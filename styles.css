@@ -1,0 +1,25 @@
+.nameWrapper{
+    display: flex;
+    justify-content: center;
+}
+.search_button{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.nameWrapper>div>input{
+    margin-top: 10px;
+}
+.add_todo_wrapper{
+    display: none;
+    justify-content: center;
+    margin-top: 20px;
+}
+.todos{
+    display: none;
+    justify-content: center;
+    margin-top: 10px;
+}
+.todos > div > div {
+    margin-top: 5px;
+}

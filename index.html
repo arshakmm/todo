@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>ToDo</title>
+</head>
+<body>
+    <div>
+        <div class="nameWrapper">
+            <div>
+                <div>
+                    Please type your name
+                </div>
+                <input type="text" id="name_input"/>
+                <div class="search_button">
+                    <button type="button" id="search_btn">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="add_todo_wrapper" id="add_to_do_wrapper">
+            <div>
+                <input type="text" id="todo" />
+                <input type="date" id="date_input" />
+                <button type="button" id="add">Add To-DO</button>
+            </div>
+        </div>
+        <div class="todos" id="currToDos">
+            <div id="toDoList">
+
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
