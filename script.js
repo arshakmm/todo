@@ -19,18 +19,73 @@ let todo = {
 const toDoListDiv = document.getElementById('toDoList');
 const toDoListDivWrapper  = document.getElementById('currToDos');
 
-nameInput.addEventListener('change', (event) => {
-    currentSearchName = ''
-    currentSearchName = event.target.value
-})
+// Delite 
 
-searchButton.addEventListener('click', search)
+const deleteTodo = document.createElement("button")
+
+deleteTodo.innerHTML = 'Delete'
+
+deleteTodo.addEventListener('click', closeTodo)
+
+
+
+function closeTodo () {
+
+        let div = this.parentElement;
+        div.style.display = "none";
+
+}
+
+
+
+// deleteTodo.className = 'close';
+
+// deleteTodo.addEventListener('click', closeTodolist)
+// function closeTodolist (e) {
+    
+//         if (e.target.nodeName !== 'A') { return };
+//         const dataNum = e.target.dataset.num;
+//         toDoInput.splice(dataNum, 1);
+        
+      
+// // }
+// let  close = document.getElementsByTex('close')
+ 
+ 
+// for (let i =0; i <  close.length;  i++) {
+//     close[i].onclick = function() {
+//         var div = this.parentElement;
+//         div.style.display = "none";
+//       }
+// }
+
+
+    
+
+//     const deleteTodo = document.getElementById('delTodo')
+
+//     deleteTodo.addEventListener('click', (event) => {
+//         toDoListDiv = toDoListDiv.filter( (item)  =>{
+//             return item.event != event;
+
+
+//         })
+        
+//     })
+
+
+nameInput.addEventListener('change', (event) => {  
+    currentSearchName = ''
+    currentSearchName = event.target.value  
+}) 
+
+searchButton.addEventListener('click', search) 
 
 toDoInput.addEventListener('change', (event) => {
     todo = {
         ...todo,
         todoValue: event.target.value
-    }
+    }    
 })
 
 dateInput.addEventListener('change', (event) => {
@@ -44,16 +99,16 @@ addToDoButton.addEventListener('click', addCurrentToDo)
 
 
 async function addCurrentToDo () {
-    const toDoList = await localStorage.getItem('todos');
+    const toDoList = await localStorage.getItem('todos'); 
     let newValues = {};
-    if(JSON.parse(toDoList) && Object.entries(JSON.parse(toDoList)).length > 0){
+    if(JSON.parse(toDoList) && Object.entries(JSON.parse(toDoList)).length > 0){ 
         const searchToDos = JSON.parse(toDoList)[currentSearchName]
         console.log(searchToDos)
         if(searchToDos){
             newValues = {
                 ...newValues,
                 ...JSON.parse(toDoList),
-                [currentSearchName]: [...searchToDos, todo]
+                [currentSearchName]: [...searchToDos, todo] 
             }
         }else{
             newValues = {
@@ -78,7 +133,7 @@ async function addCurrentToDo () {
         toDoListDivWrapper.style.display = 'flex'
         for(let i = 0; i < localValues.length; i++ ){
             console.log(localValues[i].date)
-            const currentColoredDivs = checkFieldsAndStyling(localValues[i].date, localValues[i].todoValue)
+            const currentColoredDivs = checkFieldsAndStyling(localValues[i].date, localValues[i].todoValue) 
             currentValues += currentColoredDivs
         }
 
@@ -89,20 +144,20 @@ async function addCurrentToDo () {
 
 async function search () {
     const storagNames = await localStorage.getItem('users')
-    const includingName = Array.isArray(JSON.parse(storagNames)) && JSON.parse(storagNames).includes(currentSearchName)
+    const includingName = Array.isArray(JSON.parse(storagNames)) && JSON.parse(storagNames).includes(currentSearchName)  
     toDoListShowing()
 
     let newStorageNames = []
-    if(Array.isArray(JSON.parse(storagNames))){
+    if(Array.isArray(JSON.parse(storagNames))){ 
         if(!includingName){
-            newStorageNames = [...JSON.parse(storagNames),currentSearchName]
+            newStorageNames = [...JSON.parse(storagNames),currentSearchName] 
         }else{
-            newStorageNames = [...JSON.parse(storagNames)]
+            newStorageNames = [...JSON.parse(storagNames)] 
         }
     }else{
-        newStorageNames = [currentSearchName]
-    }
-    localStorage.setItem('users',JSON.stringify(newStorageNames))
+        newStorageNames = [currentSearchName] 
+    } 
+    localStorage.setItem('users',JSON.stringify(newStorageNames)) 
     nameInput.value = ''
     addToDoWrapper.style.display = 'flex'
 }
@@ -111,10 +166,10 @@ async function search () {
 async function toDoListShowing () {
     const toDoList = await localStorage.getItem('todos');
     let currentValues = ''
-    if(JSON.parse(toDoList) && Object.entries(JSON.parse(toDoList)).length > 0 && JSON.parse(toDoList)[currentSearchName]){
+    if(JSON.parse(toDoList) && Object.entries(JSON.parse(toDoList)).length > 0 && JSON.parse(toDoList)[currentSearchName]){ 
         toDoListDivWrapper.style.display = 'flex'
         for(let i = 0; i < JSON.parse(toDoList)[currentSearchName].length; i++ ){
-            const currentColoredDivs = checkFieldsAndStyling(JSON.parse(toDoList)[currentSearchName][i].date, JSON.parse(toDoList)[currentSearchName][i].todoValue)
+             const currentColoredDivs = checkFieldsAndStyling(JSON.parse(toDoList)[currentSearchName][i].date, JSON.parse(toDoList)[currentSearchName][i].todoValue)
             currentValues += currentColoredDivs
         }
 
@@ -123,20 +178,24 @@ async function toDoListShowing () {
 }
 
 
-function checkFieldsAndStyling(date, value) {
+function checkFieldsAndStyling(date, value, ) {
     const currDay = new Date().getDate()
     const dayInData = date.slice(date.length -2)
 
     const withoutZeroDate = dayInData[0] === '0' ? dayInData.slice(1) : dayInData
-    if(currDay > Number(withoutZeroDate)){
-        return `<div style="color: green">${value} - ${date}</div>`
+   if(currDay > Number(withoutZeroDate)){
+        return `<div class ="aaa" style="color: green">${value  } - ${date}         </div>`
     }
-    if(currDay < Number(withoutZeroDate)){
-        return `<div style="color: red">${value} - ${date}</div>`
+   if(currDay < Number(withoutZeroDate)){
+        return `<div style="color: blue">${value  } - ${date}        </div>`
     }
 
-    if(currDay === Number(withoutZeroDate)){
-        return `<div style="color: yellow">${value} - ${date}</div>`
+   if(currDay === Number(withoutZeroDate)){
+        return `<div style="color: yellow">${value  } - ${date}       </div>`
     }
       
 }
+
+
+
+

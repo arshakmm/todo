@@ -1,15 +1,97 @@
+.wrapper{
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    color: #444;
+    background-color: #fefefe;
+    background-image: linear-gradient(#fc6c48 0%, #ef5081 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px 20px;
+    margin: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
 .nameWrapper{
+    text-align: center;
     display: flex;
     justify-content: center;
 }
+
+.name_header{
+    font-size: 30px;
+    color: darkslateblue;
+    padding: 15px;
+}
+
+#name_input{
+    padding: 0.5rem 1rem;
+    height: 2.125rem;
+    width: 18.526rem;
+    outline: none;
+    border: none;
+    background-color: rgb(171, 104, 104);
+    font-size: 1.25rem;
+    margin: 0.25rem;
+    border-radius: 1.56rem;
+}
+
+
+
 .search_button{
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    
+}
+
+#search_btn{
+    height: 3.125rem;
+    width: 3.125rem;
+    border-radius: 1.56rem;
+    outline: none;
+    border: none;
+    margin: 0.156rem;
+    cursor: pointer;
+    background-color: rgb(68, 123, 68);
+    color: rgb(255,255,255);
 }
 .nameWrapper>div>input{
     margin-top: 10px;
 }
+#todo{
+    padding: 0.5rem 1rem;
+    height: 1.825rem;
+    width: 14.526rem;
+    outline: none;
+    border: none;
+    background-color: rgb(171, 104, 104);
+    font-size: 1.25rem;
+    margin: 0.25rem;
+    border-radius: 1.56rem;
+}
+#date_input{
+    padding: 0.5rem 1rem;
+    height: 1.825rem;
+    width: 14.526rem;
+    outline: none;
+    border: none;
+    background-color: rgb(171, 104, 104);
+    font-size: 1.25rem;
+    margin: 0.25rem;
+    border-radius: 1.56rem;
+}
+ #add{
+    height: 3.125rem;
+    width: 6.125rem;
+    border-radius: 1.56rem;
+    outline: none;
+    border: none;
+    margin: 0.156rem;
+    cursor: pointer;
+    background-color: rgb(68, 123, 68);
+    color: rgb(255,255,255);
+ }
 .add_todo_wrapper{
     display: none;
     justify-content: center;
@@ -22,4 +104,5 @@
 }
 .todos > div > div {
     margin-top: 5px;
+    font-size: 20px;
 }
