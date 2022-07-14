@@ -21,57 +21,22 @@ const toDoListDivWrapper  = document.getElementById('currToDos');
 
 // Delite 
 
-const deleteTodo = document.createElement("button")
-
-deleteTodo.innerHTML = 'Delete'
-
-deleteTodo.addEventListener('click', closeTodo)
 
 
-
-function closeTodo () {
-
-        let div = this.parentElement;
-        div.style.display = "none";
-
-}
-
-
-
-// deleteTodo.className = 'close';
-
-// deleteTodo.addEventListener('click', closeTodolist)
-// function closeTodolist (e) {
-    
-//         if (e.target.nodeName !== 'A') { return };
-//         const dataNum = e.target.dataset.num;
-//         toDoInput.splice(dataNum, 1);
-        
-      
-// // }
-// let  close = document.getElementsByTex('close')
- 
- 
-// for (let i =0; i <  close.length;  i++) {
-//     close[i].onclick = function() {
-//         var div = this.parentElement;
-//         div.style.display = "none";
-//       }
-// }
 
 
     
 
-//     const deleteTodo = document.getElementById('delTodo')
+    // const deleteTodo = document.getElementById('delTodo')
 
-//     deleteTodo.addEventListener('click', (event) => {
-//         toDoListDiv = toDoListDiv.filter( (item)  =>{
-//             return item.event != event;
+    // deleteTodo.addEventListener('click', (event) => {
+    //     toDoListDiv = toDoListDiv.filter( (item)  =>{
+    //         return item.event != event;
 
 
-//         })
+    //     })
         
-//     })
+    // })
 
 
 nameInput.addEventListener('change', (event) => {  
@@ -85,14 +50,17 @@ toDoInput.addEventListener('change', (event) => {
     todo = {
         ...todo,
         todoValue: event.target.value
-    }    
+    }   
+    toDoInput.value = '' 
 })
 
 dateInput.addEventListener('change', (event) => {
+    
     todo = {
         ...todo,
         date: event.target.value
     }
+    
 })
 
 addToDoButton.addEventListener('click', addCurrentToDo)
@@ -106,12 +74,14 @@ async function addCurrentToDo () {
         console.log(searchToDos)
         if(searchToDos){
             newValues = {
+                
                 ...newValues,
                 ...JSON.parse(toDoList),
                 [currentSearchName]: [...searchToDos, todo] 
             }
         }else{
             newValues = {
+               
                 ...newValues,
                 ...JSON.parse(toDoList),
                 [currentSearchName]: [todo]
@@ -178,24 +148,35 @@ async function toDoListShowing () {
 }
 
 
-function checkFieldsAndStyling(date, value, ) {
+    //   let x = cur
+    // for (let i = 0; i<x.length; i++) {
+    //     x[i].onclick = function () {
+    //     this.parentNode.remove()
+    // }
+    // }
+
+
+
+function checkFieldsAndStyling(date, value, x,a) {
     const currDay = new Date().getDate()
     const dayInData = date.slice(date.length -2)
 
     const withoutZeroDate = dayInData[0] === '0' ? dayInData.slice(1) : dayInData
    if(currDay > Number(withoutZeroDate)){
-        return `<div class ="aaa" style="color: green">${value  } - ${date}         </div>`
+        return ` <div class = 'a'  style="color: green"> <input type="checkbox"> ${value  } - ${date}     <button type = "button" onclick ='return this.parentNode.remove();' >x</button>    </div>`
     }
    if(currDay < Number(withoutZeroDate)){
-        return `<div style="color: blue">${value  } - ${date}        </div>`
+        return `<div style="color: blue">  <input type="checkbox"> ${value  } - ${date}       <button type = "button" onclick ='return this.parentNode.remove();' >x</button>    </div>`
     }
 
    if(currDay === Number(withoutZeroDate)){
-        return `<div style="color: yellow">${value  } - ${date}       </div>`
+        return `<div style="color: yellow"> <input type="checkbox"> ${value  } - ${date}      <button type = "button" onclick ='return this.parentNode.remove();' >x</button>    </div>`
     }
       
-}
+    
+        
 
+}
 
 
 
