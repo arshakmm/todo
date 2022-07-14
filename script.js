@@ -157,24 +157,32 @@ async function toDoListShowing () {
 
 
 
+const handleRemove = (value) => {
+    const values = JSON.parse(localStorage.getItem('todos'))
+    const newDeletedValues = values[currentSearchName].filter((element) => element.todoValue !== value)
+    const newData = {
+        ...values,
+        [currentSearchName]: newDeletedValues
+    }
+    localStorage.setItem('todos', JSON.stringify(newData))
+}
+
+
 function checkFieldsAndStyling(date, value, x,a) {
     const currDay = new Date().getDate()
     const dayInData = date.slice(date.length -2)
 
     const withoutZeroDate = dayInData[0] === '0' ? dayInData.slice(1) : dayInData
    if(currDay > Number(withoutZeroDate)){
-        return ` <div class = 'a'  style="color: green"> <input type="checkbox"> ${value  } - ${date}     <button type = "button" onclick ='return this.parentNode.remove();' >x</button>    </div>`
+        return ` <div class = 'a'  style="color: green"> <input type="checkbox"> ${value  } - ${date}<button type = "button"  onClick='handleRemove("${value}")'>x</button></div>`
     }
    if(currDay < Number(withoutZeroDate)){
-        return `<div style="color: blue">  <input type="checkbox"> ${value  } - ${date}       <button type = "button" onclick ='return this.parentNode.remove();' >x</button>    </div>`
+        return `<div style="color: blue">  <input type="checkbox"> ${value  } - ${date}<button type = "button"  onClick='handleRemove("${value}")'>x</button></div>`
     }
 
    if(currDay === Number(withoutZeroDate)){
-        return `<div style="color: yellow"> <input type="checkbox"> ${value  } - ${date}      <button type = "button" onclick ='return this.parentNode.remove();' >x</button>    </div>`
-    }
-      
-    
-        
+        return `<div style="color: yellow"> <input type="checkbox"> ${value  } - ${date}<button type = "button"  onClick='handleRemove("${value}")'>x</button></div>`
+    }       
 
 }
 
